@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"runtime"
 	"testing"
 	"time"
 
@@ -30,7 +31,12 @@ func createLegacyTree(t *testing.T, dbDir string, version int) (string, error) {
 		}
 	}
 
-	cmd := exec.Command("sh", "-c", fmt.Sprintf("./cmd/legacydump/legacydump %s %s random %d %d", dbType, relateDir, version, version/2)) //nolint:gosec
+	// Use platform-specific binary
+	binaryPath := "./cmd/legacydump/legacydump" // Linux binary for CI
+	if runtime.GOOS == "darwin" {
+		binaryPath = "./cmd/legacydump/legacydump.macos" // macOS binary for local development
+	}
+	cmd := exec.Command(binaryPath, dbType, relateDir, "random", fmt.Sprintf("%d", version), fmt.Sprintf("%d", version/2)) //nolint:gosec
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -340,6 +346,7 @@ func TestRandomSet(t *testing.T) {
 		require.NoError(t, err)
 	}
 
-	err = tree.DeleteVersionsTo(int64(legacyVersion + postVersions - 1))
+	// Delete versions but keep the legacy version
+	err = tree.DeleteVersionsTo(int64(legacyVersion + postVersions - 2))
 	require.NoError(t, err)
 }

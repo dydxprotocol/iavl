@@ -505,7 +505,6 @@ func (ndb *nodeDB) DeleteVersionsFrom(fromVersion int64) error {
 	err = ndb.traverseRange(nodeKeyPrefixFormat.KeyInt64(fromVersion), nodeKeyPrefixFormat.KeyInt64(latest+1), func(k, v []byte) error {
 		return ndb.batch.Delete(k)
 	})
-
 	if err != nil {
 		return err
 	}
@@ -1213,7 +1212,6 @@ func (ndb *nodeDB) String() (string, error) {
 		index++
 		return nil
 	})
-
 	if err != nil {
 		return "", err
 	}

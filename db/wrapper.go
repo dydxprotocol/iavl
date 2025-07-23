@@ -34,6 +34,11 @@ func (db *Wrapper) NewBatchWithSize(size int) Batch {
 	return db.DB.NewBatchWithSize(size)
 }
 
+// Close implements DB.
+func (db *Wrapper) Close() error {
+	return db.DB.Close()
+}
+
 // NewDB returns a new Wrapper.
 func NewDB(name, backendType, dir string) (*Wrapper, error) {
 	db, err := dbm.NewDB(name, dbm.BackendType(backendType), dir)

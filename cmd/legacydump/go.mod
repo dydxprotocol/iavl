@@ -1,6 +1,6 @@
 module github.com/cosmos/iavl/cmd/legacydump
 
-go 1.20
+go 1.24
 
 require (
 	github.com/cometbft/cometbft-db v0.7.0
@@ -29,3 +29,5 @@ require (
 	golang.org/x/sys v0.13.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 )
+
+toolchain go1.24.4
