@@ -61,3 +61,5 @@ retract (
 	[v0.21.0, v0.21.2]
 	v0.18.0
 )
+
+toolchain go1.24.4

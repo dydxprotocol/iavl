@@ -29,3 +29,5 @@ require (
 	golang.org/x/sys v0.13.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 )
+
+toolchain go1.24.4
