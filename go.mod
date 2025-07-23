@@ -2,6 +2,8 @@ module github.com/cosmos/iavl
 
 go 1.24
 
+toolchain go1.24.4
+
 require (
 	cosmossdk.io/log v1.3.1
 	github.com/cosmos/cosmos-db v1.0.2
@@ -61,5 +63,3 @@ retract (
 	[v0.21.0, v0.21.2]
 	v0.18.0
 )
-
-toolchain go1.24.4

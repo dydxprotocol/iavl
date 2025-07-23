@@ -346,6 +346,7 @@ func TestRandomSet(t *testing.T) {
 		require.NoError(t, err)
 	}
 
-	err = tree.DeleteVersionsTo(int64(legacyVersion + postVersions - 1))
+	// Delete versions but keep the legacy version
+	err = tree.DeleteVersionsTo(int64(legacyVersion + postVersions - 2))
 	require.NoError(t, err)
 }

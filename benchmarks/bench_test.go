@@ -348,7 +348,6 @@ func runBenchmarks(b *testing.B, benchmarks []benchmark) {
 		)
 		if bb.dbType != "nodb" {
 			d, err = dbm.NewDB("test", bb.dbType, dirName)
-
 			if err != nil {
 				if strings.Contains(err.Error(), "unknown db_backend") {
 					// As an exception to run benchmarks: if the error is about cleveldb, or rocksdb,
